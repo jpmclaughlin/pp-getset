@@ -1,6 +1,10 @@
 {
   "name": "pp-getset",
   "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:jpmclaughlin/pp-getset.git"
+  },
   "devDependencies": {
     "assemble": "^0.6.0",
     "glob": "^4.0.5",
