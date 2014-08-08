@@ -33,9 +33,7 @@
     "inuit-widths": "~0.3.2",
       
     "jquery": "~2.1.1",
-    "modernizr": "~2.8.3",
-    //"underscore": "~1.6.0",
-    //"backbone": "~1.1.2"
+    "modernizr": "~2.8.3"
   },
   "preen": {
     "jquery": [

@@ -3,144 +3,57 @@ module.exports = function(grunt) {
   // Load NPM Tasks -- replaces 'grunt.loadNpmTask'
   // https://github.com/shootaroo/jit-grunt
   require('jit-grunt')(grunt);
-
-  grunt.initConfig({
-    pkg: grunt.file.readJSON( 'package.json' ),
-
-    // == Grunt Dev Update -- automate update of devDependencies
-    // https://npmjs.org/package/grunt-dev-update
-    devUpdate: {
-      main: {
-        options: {
-          reportUpdated: false, // Report updated dependencies: 'false' | 'true'
-          updateType   : "force" // 'force'|'report'|'prompt'
-        }
-      }
-    },
     
-    watch: {
-      scss: {
-        files: ['source/**/*.scss'],
-        tasks: 'scss'
-      },
-//      html: {
-//        files: ['source/_patterns/**/*.mustache', 'source/_patterns/**/*.json', 'source/_data/*.json'],
-//        tasks: ['shell:patternlab'],
-//        options: {
-//          spawn: false
-//        }
-//      },
-//      js: {
-//        files: ['source/**/*.js'],
-//        tasks: 'js'
-//      },
-      livereload: {
-        options: {
-          livereload: true
-        },
-        files: [
-          'public/**/*.html',
-          'public/css/{,*/}*.css',
-          'public/js/{,*/}*.js'
-        ]
-      }
-    },
-      
-    sass: {
-      build: {
-        files : [
-          {
-            src : ['**/*.scss', '!**/_*.scss'],
-            cwd : 'source',
-            dest : 'source',
-            ext : '.css',
-            expand : true
-          }
-        ],
-        options : {
-          style : 'expanded'
-        }
-      }
-    },
-      
-    // https://github.com/nDmitry/grunt-autoprefixer
-    autoprefixer: {
-      build: {
-        options: {
-          browsers: ['last 2 versions', '> 1%']
-        },
-        files: [
-          {
-            src : ['source/**/*.css'],
-            cwd : 'css',
-            dest : 'source/css',
-            expand : true
-          }
-        ]
-      }
-    },
+  // Utility to load the different option files
+  // based on their names
+  function loadConfig(path) {
+    var glob = require('glob');
+    var object = {};
+    var key;
+
+    glob.sync('*', {cwd: path}).forEach(function(option) {
+      key = option.replace(/\.js$/,'');
+      object[key] = require(path + option);
+    });
+
+    return object;
+  }
+
+  // Initial config
+  var config = {
+    pkg: grunt.file.readJSON('package.json')
+  }
+
+  // Load tasks from the tasks folder
+  grunt.loadTasks('tasks');
     
-    connect: {
-      server: {
-        options: {
-          port: 9001,
-          protocol: 'http',
-          hostname: 'localhost',
-          base: './public/',  // '.' operates from the root of your Gruntfile, otherwise -> 'Users/user-name/www-directory/website-directory'
-          keepalive: false, // set to false to work side by side w/watch task.
-          livereload: true,
-          open: true
-        }
-      }
-    },
-      
-    copy: {
-    //   demo: {
-    //     files: [
-    //       { expand: true, cwd: './css', src: ['./**/*.*'], dest: 'dist/assets/css' },
-    //       { expand: true, cwd: './js', src: ['./**/*.*'], dest: 'dist/assets/js' }
-    //     ]
-    //   },
-      css: {
-        files: [
-          { expand: true, cwd: 'source/css', src: ['./**/*.css'], dest: 'public/css' }
-        ]
-      },
-      js: {
-        files: [
-          { expand: true, cwd: 'source/js', src: ['./**/*.*'], dest: 'public/js' }
-        ]
-      },
-      images: {
-        files: [
-          { expand: true, cwd: 'source/images', src: ['./**/*.*'], dest: 'public/images' }
-        ]
-      }
-    //},
+  // Load all the tasks options in tasks/options based on the name:
+  // watch.js => watch{}
+  grunt.util._.extend(config, loadConfig('./tasks/options/'));
+    
+  grunt.initConfig(config);
 
-    // 'gh-pages': {
-    //   options: {
-    //     base: 'dist'
-    //   },
-    //   src: '**/*'
-    }
+  require('load-grunt-tasks')(grunt);
 
-  });
-
-  grunt.registerTask('default', ['dev']);
-
-  grunt.registerTask('update', ['devUpdate']);
-  // grunt.registerTask('default', ['sass', 'autoprefixer', 'assemble', 'copy']);
-  grunt.registerTask('scss', ['sass', 'autoprefixer', 'copy:css']);
-  // grunt.registerTask('html', ['assemble']);
-  //grunt.registerTask('js', ['copy:js']);
-  //grunt.registerTask('img', ['copy:images']);
-  grunt.registerTask('dev', ['connect', 'watch']);
-  // grunt.registerTask('demo', ['copy:demo', 'assemble:demo']);
-  // grunt.registerTask('deploy', ['gh-pages']);
-  // 
+  // Default Task is basically a rebuild
+  //grunt.registerTask('default', ['concat', 'uglify', 'sass', 'imagemin', 'autoprefixer', 'cssmin']);
   
-  //  // Load the plugins
-  grunt.loadNpmTasks('grunt-contrib-watch');
-//  grunt.loadNpmTasks('grunt-shell');
+  grunt.registerTask('default', ['devUpdate', 'sass', 'autoprefixer', 'copy', 'cssmin']);
+    
 };
+
+//  grunt.registerTask('update', ['devUpdate']);
+
+
+//  // grunt.registerTask('html', ['assemble']);
+//  //grunt.registerTask('js', ['copy:js']);
+//  //grunt.registerTask('img', ['copy:images']);
+
+//  // grunt.registerTask('demo', ['copy:demo', 'assemble:demo']);
+//  // grunt.registerTask('deploy', ['gh-pages']);
+//  // 
+//  
+//  //  // Load the plugins
+//  grunt.loadNpmTasks('grunt-contrib-watch');
+////  grunt.loadNpmTasks('grunt-shell');
+//};
