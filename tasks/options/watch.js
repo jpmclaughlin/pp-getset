@@ -34,13 +34,13 @@ module.exports = {
     files: ['source/**/*.scss'],
     tasks: 'scss'
   },
-//      html: {
-//        files: ['source/_patterns/**/*.mustache', 'source/_patterns/**/*.json', 'source/_data/*.json'],
-//        tasks: ['shell:patternlab'],
-//        options: {
-//          spawn: false
-//        }
-//      },
+  html: {
+   files: ['source/**/*.hbs'],
+   tasks: ['assemble'],
+   options: {
+     spawn: false
+   }
+  },
 //      js: {
 //        files: ['source/**/*.js'],
 //        tasks: 'js'
