@@ -35,7 +35,7 @@ module.exports = {
     tasks: 'scss'
   },
   html: {
-   files: ['source/**/*.hbs'],
+   files: ['source/**/*.hbs', 'source/**/*.md'],
    tasks: ['assemble'],
    options: {
      spawn: false
