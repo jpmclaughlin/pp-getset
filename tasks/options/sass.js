@@ -5,7 +5,7 @@ module.exports = {
       style: 'expanded'
     },
     files: {
-      'source/css/style.css': 'source/css/style.scss'
+      'public/css/style.css': 'source/css/style.scss'
     }
   }    
 }
