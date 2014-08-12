@@ -1,11 +1,9 @@
 module.exports = function(grunt) {
 
   // Load NPM Tasks -- replaces 'grunt.loadNpmTask'
-  // https://github.com/shootaroo/jit-grunt
   require('jit-grunt')(grunt);
     
-  // Utility to load the different option files
-  // based on their names
+  // Utility to load the different option files based on their names
   function loadConfig(path) {
     var glob = require('glob');
     var object = {};
@@ -35,25 +33,12 @@ module.exports = function(grunt) {
 
   require('load-grunt-tasks')(grunt);  
 
-  // Default Task is basically a rebuild
-  //grunt.registerTask('default', ['concat', 'uglify', 'sass', 'imagemin', 'autoprefixer', 'cssmin']);
-  
-  grunt.registerTask('default', ['devUpdate', 'sass', 'autoprefixer', 'copy', 'cssmin', 'preen']);
+  // Default Task is basically a rebuild  
+  grunt.registerTask('default', ['devUpdate', 'assemble', 'sass', 'autoprefixer', 'copy', 'cssmin']);
+
+  //grunt.registerTask('js', ['copy:js']);
+  //grunt.registerTask('img', ['copy:images']);
+  //grunt.registerTask('deploy', ['gh-pages']);
     
 };
 
-//  grunt.registerTask('update', ['devUpdate']);
-
-
-//  // grunt.registerTask('html', ['assemble']);
-//  //grunt.registerTask('js', ['copy:js']);
-//  //grunt.registerTask('img', ['copy:images']);
-
-//  // grunt.registerTask('demo', ['copy:demo', 'assemble:demo']);
-//  // grunt.registerTask('deploy', ['gh-pages']);
-//  // 
-//  
-//  //  // Load the plugins
-//  grunt.loadNpmTasks('grunt-contrib-watch');
-////  grunt.loadNpmTasks('grunt-shell');
-//};
