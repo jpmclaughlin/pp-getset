@@ -1,0 +1,15 @@
+*,*:before,*:after{
+    box-sizing:border-box;
+}
+
+body {
+    max-width: 1200px;
+    margin: 18px auto;
+}
+
+.demo-block {
+    background: red;
+    padding: 18px;
+    color: white;
+}
+
