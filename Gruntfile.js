@@ -40,9 +40,4 @@ module.exports = function(grunt) {
   //grunt.registerTask('img', ['copy:images']);
   //grunt.registerTask('deploy', ['gh-pages']);
     
-<<<<<<< HEAD
 };
-=======
-};
-
->>>>>>> origin/master
