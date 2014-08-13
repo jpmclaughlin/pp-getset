@@ -36,24 +36,65 @@
     "modernizr": "~2.8.3"
   },
   "preen": {
-    "jquery": ["dist/*.js"],
-    "inuit-box-sizing": ["*.scss"],
-    "inuit-clearfix": ["*.scss"],
-    "inuit-defaults": ["*.scss"],
-    "inuit-functions": ["*.scss"],
-    "inuit-headings": ["*.scss"],
-    "inuit-images": ["*.scss"],
-    "inuit-layout": ["*.scss"],
-    "inuit-lists": ["*.scss"],
-    "inuit-media": ["*.scss"],
-    "inuit-mixins": ["*.scss"],
-    "inuit-normalize": ["*.scss"],
-    "inuit-page": ["*.scss"],
-    "inuit-reset": ["*.scss"],
-    "inuit-responsive-settings": ["*.scss"],
-    "inuit-shared": ["*.scss"],
-    "inuit-spacing": ["*.scss"],
-    "inuit-starter-kit": ["*.scss"],
-    "inuit-widths": ["*.scss"]
+    "jquery": [
+      "dist/*.js"
+    ],
+    "inuit-box-sizing": [
+      "*.scss"
+    ],
+    "inuit-clearfix": [
+      "*.scss"
+    ],
+    "inuit-defaults": [
+      "*.scss"
+    ],
+    "inuit-functions": [
+      "*.scss"
+    ],
+    "inuit-headings": [
+      "*.scss"
+    ],
+    "inuit-images": [
+      "*.scss"
+    ],
+    "inuit-layout": [
+      "*.scss"
+    ],
+    "inuit-lists": [
+      "*.scss"
+    ],
+    "inuit-media": [
+      "*.scss"
+    ],
+    "inuit-mixins": [
+      "*.scss"
+    ],
+    "inuit-normalize": [
+      "*.scss"
+    ],
+    "inuit-page": [
+      "*.scss"
+    ],
+    "inuit-reset": [
+      "*.scss"
+    ],
+    "inuit-responsive-settings": [
+      "*.scss"
+    ],
+    "inuit-shared": [
+      "*.scss"
+    ],
+    "inuit-spacing": [
+      "*.scss"
+    ],
+    "inuit-starter-kit": [
+      "*.scss"
+    ],
+    "inuit-widths": [
+      "*.scss"
+    ]
+  },
+  "devDependencies": {
+    "inuit-responsive-tools": "~0.1.2"
   }
 }
